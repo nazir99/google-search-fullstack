@@ -46,7 +46,7 @@ let data = [
         url: 'https://www.w3schools.com/js'
       },
       {
-        title: 'JS for the Web',
+        title: 'JS for the Web tt3',
         url: 'https://www.w3schools.com/js'
       }
     ]
