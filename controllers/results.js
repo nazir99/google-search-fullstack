@@ -3,7 +3,9 @@ const express = require('express')
 const router = express.Router()
 
 //const Results = require('../models/results')
-let results = [
+
+//declaring the data that the function is searching through in the Post function, make sure to bring it in before the Post Function
+let data = [
   {
     title: 'JS tutorials',
     description: 'The best JavaScript tutorials in the galaxy!',
@@ -53,8 +55,14 @@ let results = [
 
 // Create POST controller
 router.post('/', (req, res) => {
+  //used to log what I am putting in the search bar and make sure the Results field is receiving it
   console.log(req.body.search)
-  console.log(results)
+  //used to make sure I am sending the Data that I declared
+  console.log(data)
+  // usef filter function to create a new array of the filter data
+
+  // const result = words.filter(word => word.length > 6);
+  let results = data.filter(d => d.title == req.body.search)
   res.render('results', { results })
 })
 
