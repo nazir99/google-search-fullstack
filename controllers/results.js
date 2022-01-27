@@ -62,7 +62,8 @@ router.post('/', (req, res) => {
   // usef filter function to create a new array of the filter data
 
   // const result = words.filter(word => word.length > 6);
-  let results = data.filter(d => d.title == req.body.search)
+  // used the include function to check if the body matchs any string within the array
+  let results = data.filter(d => d.title.includes(req.body.search))
   res.render('results', { results })
 })
 
