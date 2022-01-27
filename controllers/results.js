@@ -38,7 +38,7 @@ let data = [
   },
   {
     title: 'JS tutorials2',
-    description: 'The best JavaScript tutorials in the galaxy!',
+    description: 'The best JavaScript tutorials in the galaxy ss!',
     url: 'https://www.w3schools.com',
     links: [
       {
@@ -63,7 +63,12 @@ router.post('/', (req, res) => {
 
   // const result = words.filter(word => word.length > 6);
   // used the include function to check if the body matchs any string within the array
-  let results = data.filter(d => d.title.includes(req.body.search))
+  let results = data.filter(
+    d =>
+      d.title.includes(req.body.search) ||
+      d.description.includes(req.body.search) ||
+      d.url.includes(req.body.search)
+  )
   res.render('results', { results })
 })
 
