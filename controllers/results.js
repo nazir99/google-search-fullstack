@@ -3,12 +3,6 @@ const express = require('express')
 const router = express.Router()
 
 //const Results = require('../models/results')
-// Create POST controller
-router.post('/', (req, res) => {
-  console.log(req.body.search)
-  res.render('results')
-})
-
 let results = [
   {
     title: 'JS tutorials',
@@ -57,9 +51,16 @@ let results = [
   }
 ]
 
+// Create POST controller
+router.post('/', (req, res) => {
+  console.log(req.body.search)
+  console.log(results)
+  res.render('results', { results })
+})
+
 //views
 router.get('/', (req, res) => {
-  res.render('results', { results })
+  res.render('results')
 })
 
 // let a = (data, search) => {
