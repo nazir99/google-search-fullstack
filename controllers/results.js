@@ -4,71 +4,98 @@ const router = express.Router()
 
 //const Results = require('../models/results')
 
-//declaring the data that the function is searching through in the Post function, make sure to bring it in before the Post Function
-let data = [
-  {
-    title: 'JS tutorials',
-    description: 'The best JavaScript tutorials in the galaxy!',
-    url: 'https://www.w3schools.com',
-    links: [
-      {
-        title: 'JS for Beginners',
-        url: 'https://www.w3schools.com/js'
-      },
-      {
-        title: 'JS for the Web',
-        url: 'https://www.w3schools.com/js'
-      }
-    ]
-  },
-  {
-    title: 'JS tutorials1',
-    description: 'The best JavaScript tutorials in the galaxy!',
-    url: 'https://www.w3schools.com',
-    links: [
-      {
-        title: 'JS for Beginners',
-        url: 'https://www.w3schools.com/js'
-      },
-      {
-        title: 'JS for the Web',
-        url: 'https://www.w3schools.com/js'
-      }
-    ]
-  },
-  {
-    title: 'JS tutorials2',
-    description: 'The best JavaScript tutorials in the galaxy ss!',
-    url: 'https://www.w3schools.com',
-    links: [
-      {
-        title: 'JS for Beginners',
-        url: 'https://www.w3schools.com/js'
-      },
-      {
-        title: 'JS for the Web tt3',
-        url: 'https://www.w3schools.com/js'
-      }
-    ]
-  }
-]
+const Results = require('../models/results')
 
-// Create POST controller
-router.post('/', (req, res) => {
+//declaring the data that the function is searching through in the Post function, make sure to bring it in before the Post Function
+// let data = [
+//   {
+//     title: 'JS tutorials',
+//     description: 'The best JavaScript tutorials in the galaxy!',
+//     url: 'https://www.w3schools.com',
+//     links: [
+//       {
+//         title: 'JS for Beginners',
+//         url: 'https://www.w3schools.com/js'
+//       },
+//       {
+//         title: 'JS for the Web',
+//         url: 'https://www.w3schools.com/js'
+//       }
+//     ]
+//   },
+//   {
+//     title: 'JS tutorials1',
+//     description: 'The best JavaScript tutorials in the galaxy!',
+//     url: 'https://www.w3schools.com',
+//     links: [
+//       {
+//         title: 'JS for Beginners',
+//         url: 'https://www.w3schools.com/js'
+//       },
+//       {
+//         title: 'JS for the Web',
+//         url: 'https://www.w3schools.com/js'
+//       }
+//     ]
+//   },
+//   {
+//     title: 'JS tutorials2',
+//     description: 'The best JavaScript tutorials in the galaxy ss!',
+//     url: 'https://www.w3schools.com',
+//     links: [
+//       {
+//         title: 'JS for Beginners',
+//         url: 'https://www.w3schools.com/js'
+//       },
+//       {
+//         title: 'JS for the Web tt3',
+//         url: 'https://www.w3schools.com/js'
+//       }
+//     ]
+//   }
+// ]
+
+// // Create POST controller
+// router.post('/', (req, res) => {
+//   //used to log what I am putting in the search bar and make sure the Results field is receiving it
+//   console.log(req.body.search)
+//   //used to make sure I am sending the Data that I declared
+//   console.log(data)
+//   // usef filter function to create a new array of the filter data
+//
+//   // const result = words.filter(word => word.length > 6);
+//   // used the include function to check if the body matchs any string within the array
+//   let results = data.filter(
+//     d =>
+//       d.title.includes(req.body.search) ||
+//       d.description.includes(req.body.search) ||
+//       d.url.includes(req.body.search)
+//   )
+//   res.render('results', { results })
+// })
+
+//////Trying to search Database
+router.post('/', async (req, res) => {
   //used to log what I am putting in the search bar and make sure the Results field is receiving it
   console.log(req.body.search)
   //used to make sure I am sending the Data that I declared
-  console.log(data)
+  //This is the hard Code Data
+  // console.log(data)
+  //this is the port to the data from the Data Base
+  // console.log(Results)
+  const results = await Results.find({})
+  await console.log(results)
+
   // usef filter function to create a new array of the filter data
 
   // const result = words.filter(word => word.length > 6);
   // used the include function to check if the body matchs any string within the array
-  let results = data.filter(
-    d =>
-      d.title.includes(req.body.search) ||
-      d.description.includes(req.body.search) ||
-      d.url.includes(req.body.search)
-  )
+  // let results = data.filter(
+  //   d =>
+  //     d.title.includes(req.body.search) ||
+  //     d.description.includes(req.body.search) ||
+  //     d.url.includes(req.body.search)
+  // )
   res.render('results', { results })
 })
 
